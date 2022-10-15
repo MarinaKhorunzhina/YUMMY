@@ -16,7 +16,7 @@ class CategoryCell: UICollectionViewCell, SelfConfiguringCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .blue
+        backgroundColor = .yellow
         setupConstraints()
         
         self.layer.cornerRadius = 4
@@ -24,7 +24,7 @@ class CategoryCell: UICollectionViewCell, SelfConfiguringCell {
     }
     
     func configure<U>(with value: U) where U : Hashable {
-        guard let category: Category = value as? Category else { return }
+        guard let category: Baners = value as? Baners else { return }
         nameCategory.text = category.nameCategory
         
     }

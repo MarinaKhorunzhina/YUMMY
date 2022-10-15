@@ -10,22 +10,22 @@ import UIKit
 class ListViewController: UIViewController {
     
     let baners = Bundle.main.decode([Baners].self, from: "baners.json")
-    let category = Bundle.main.decode([Category].self, from: "category.json")
-    let list = Bundle.main.decode([List].self, from: "list.json")
+    let category = Bundle.main.decode([Baners].self, from: "baners.json")
+    let list = Bundle.main.decode([Baners].self, from: "baners.json")
     
     enum Section: Int, CaseIterable {
         case  baners, category, list
-        func description() -> String {
-            switch self {
-            
-            case .baners:
-                return "baners"
-            case .category:
-                return "category"
-            case .list:
-                return "list"
-            }
-    }
+//        func description() -> String {
+//            switch self {
+//
+//            case .baners:
+//                return "baners"
+//            case .category:
+//                return "category"
+//            case .list:
+//                return "list"
+//            }
+//    }
 }
     var dataSource: UICollectionViewDiffableDataSource<Section, Baners>?
     var collectionView: UICollectionView!
@@ -59,25 +59,27 @@ class ListViewController: UIViewController {
       
         
         collectionView.register(BanersCell.self, forCellWithReuseIdentifier: BanersCell.reuseId)
-       
+        collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.reuseId)
+        collectionView.register(ListCell.self, forCellWithReuseIdentifier: ListCell.reuseId)
     }
     
     private func reloadData() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Baners>()
         
         snapshot.appendSections([.baners, .category, .list])
-        
+       
         snapshot.appendItems(baners, toSection: .baners)
-      //  snapshot.appendItems(activeChats, toSection: .activeChats)
+        snapshot.appendItems(category, toSection: .category)
+        snapshot.appendItems(list, toSection: .list)
 
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
-
+}
 
 // MARK: - Data Source
-    
+    extension ListViewController {
     private func createDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Baners>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, chat) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, Baners> (collectionView: collectionView, cellProvider: { (collectionView, indexPath, chat) -> UICollectionViewCell? in
             guard let section = Section(rawValue: indexPath.section) else {
                 fatalError("Unknown section kind")
             }
@@ -87,16 +89,16 @@ class ListViewController: UIViewController {
                 return self.configure(cellType: BanersCell.self, with: chat, for: indexPath)
         
             case .category:
-               // return self.configure(cellType: WaitingChatCell.self, with: chat, for: indexPath)
-                print ("category")
+                return self.configure(cellType: CategoryCell.self, with: chat, for: indexPath)
+                
             case .list:
-                print ("list")
+                return self.configure(cellType: ListCell.self, with: chat, for: indexPath)
             }
-            return nil
      })
-    
+        
     }
 }
+
 
 // MARK: - Setup layout
 extension ListViewController {
@@ -112,16 +114,15 @@ extension ListViewController {
                 return self.createBaners()
                 
             case .category:
-                print ("list")
-               // return self.createWaitingChats()
+                return self.createCategory()
+               
             case .list:
-               print ("list")
+                return self.createList()
             }
-        return nil
         }
     
         let config = UICollectionViewCompositionalLayoutConfiguration()
-        config.interSectionSpacing = 20
+        config.interSectionSpacing = 30
         layout.configuration = config
         return layout
     }
@@ -145,7 +146,24 @@ extension ListViewController {
         return section
     }
     
-    private func createActiveChats() -> NSCollectionLayoutSection {
+    private func createCategory() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                              heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(70),
+                                               heightDimension: .absolute(65))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 20
+        section.contentInsets = NSDirectionalEdgeInsets.init(top: 16, leading: 20, bottom: 0, trailing: 20)
+        section.orthogonalScrollingBehavior = .continuous
+        
+        return section
+    }
+    
+    private func createList() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                               heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -155,13 +173,11 @@ extension ListViewController {
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 8
+        section.interGroupSpacing = 1
         section.contentInsets = NSDirectionalEdgeInsets.init(top: 16, leading: 20, bottom: 0, trailing: 20)
-        
         
         return section
     }
-  
 }
 // MARK: - UISearchBarDelegate
 extension ListViewController: UISearchBarDelegate {
