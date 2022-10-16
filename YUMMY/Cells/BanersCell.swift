@@ -51,8 +51,8 @@ extension BanersCell {
         NSLayoutConstraint.activate([
             imageStringURL.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             imageStringURL.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            imageStringURL.heightAnchor.constraint(equalToConstant: 78),
-            imageStringURL.widthAnchor.constraint(equalToConstant: 78)
+            imageStringURL.heightAnchor.constraint(equalToConstant: 112),
+            imageStringURL.widthAnchor.constraint(equalToConstant: 300)
         ])
         
     }

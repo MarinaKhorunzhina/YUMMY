@@ -27,12 +27,12 @@ class ListViewController: UIViewController {
 //            }
 //    }
 }
-    var dataSource: UICollectionViewDiffableDataSource<Section, Baners>?
+    var dataSource: UICollectionViewDiffableDataSource<Section, Baners>!
     var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationItem.hidesSearchBarWhenScrolling = false
         //setupSearchBar()
         setupCollectionView()
         createDataSource()
@@ -53,7 +53,7 @@ class ListViewController: UIViewController {
     private func setupCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCompositionalLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.backgroundColor = .gray
+        collectionView.backgroundColor = .lightGray
         view.addSubview(collectionView)
         
       
@@ -65,38 +65,38 @@ class ListViewController: UIViewController {
     
     private func reloadData() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Baners>()
-        
+     
         snapshot.appendSections([.baners, .category, .list])
-       
         snapshot.appendItems(baners, toSection: .baners)
         snapshot.appendItems(category, toSection: .category)
         snapshot.appendItems(list, toSection: .list)
 
-        dataSource?.apply(snapshot, animatingDifferences: true)
+        dataSource?.apply(snapshot, animatingDifferences: false)
     }
 }
 
 // MARK: - Data Source
     extension ListViewController {
     private func createDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Baners> (collectionView: collectionView, cellProvider: { (collectionView, indexPath, chat) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, Baners> (collectionView: collectionView, cellProvider: { (collectionView, indexPath, food) -> UICollectionViewCell? in
             guard let section = Section(rawValue: indexPath.section) else {
                 fatalError("Unknown section kind")
             }
             
             switch section {
             case .baners:
-                return self.configure(cellType: BanersCell.self, with: chat, for: indexPath)
+                return self.configure(cellType: BanersCell.self, with: food, for: indexPath)
         
             case .category:
-                return self.configure(cellType: CategoryCell.self, with: chat, for: indexPath)
+                return self.configure(cellType: CategoryCell.self, with: food, for: indexPath)
                 
             case .list:
-                return self.configure(cellType: ListCell.self, with: chat, for: indexPath)
+                return self.configure(cellType: ListCell.self, with: food, for: indexPath)
             }
      })
         
     }
+        
 }
 
 
@@ -133,8 +133,8 @@ extension ListViewController {
                                               heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(88),
-                                               heightDimension: .absolute(88))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(300),
+                                               heightDimension: .absolute(112))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
@@ -151,8 +151,8 @@ extension ListViewController {
                                               heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(70),
-                                               heightDimension: .absolute(65))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(88),
+                                               heightDimension: .absolute(32))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
@@ -169,12 +169,12 @@ extension ListViewController {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                               heightDimension: .absolute(78))
+                                               heightDimension: .absolute(156))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 1
-        section.contentInsets = NSDirectionalEdgeInsets.init(top: 16, leading: 20, bottom: 0, trailing: 20)
+        section.contentInsets = NSDirectionalEdgeInsets.init(top: 16, leading: 0, bottom: 0, trailing: 0)
         
         return section
     }

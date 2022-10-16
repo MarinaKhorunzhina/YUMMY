@@ -16,10 +16,11 @@ class CategoryCell: UICollectionViewCell, SelfConfiguringCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .yellow
+        backgroundColor = .systemPink
+        
         setupConstraints()
         
-        self.layer.cornerRadius = 4
+        self.layer.cornerRadius = 16
         self.clipsToBounds = true
     }
     
@@ -38,16 +39,21 @@ class CategoryCell: UICollectionViewCell, SelfConfiguringCell {
 extension CategoryCell {
     private func setupConstraints() {
         nameCategory.translatesAutoresizingMaskIntoConstraints = false
+        nameCategory.textColor = .white
+        nameCategory.font = UIFont(name: nameCategory.font.fontName, size: 17)
         
         addSubview(nameCategory)
       
         
         
         NSLayoutConstraint.activate([
-            nameCategory.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+           // nameCategory.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             nameCategory.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            nameCategory.heightAnchor.constraint(equalToConstant: 78),
-            nameCategory.widthAnchor.constraint(equalToConstant: 78)
+            nameCategory.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            nameCategory.heightAnchor.constraint(equalToConstant: 32),
+            nameCategory.widthAnchor.constraint(equalToConstant: 88),
+           
+
         ])
         
     }

@@ -46,8 +46,18 @@ extension ListCell {
         foodImageString.translatesAutoresizingMaskIntoConstraints = false
         consist.translatesAutoresizingMaskIntoConstraints = false
         price.translatesAutoresizingMaskIntoConstraints = false
-       
+        nameFood.font = UIFont.boldSystemFont(ofSize: 17)
+        consist.numberOfLines = 6
+        price.layer.borderWidth = 1
+        price.layer.borderColor = UIColor.black.cgColor
+        price.textAlignment = NSTextAlignment.center
+        price.layer.cornerRadius = 6
         
+//        label.textColor = UIColor.blue
+//        label.font = UIFont.boldSystemFont(ofSize: 15)
+//        label.textAlignment = NSTextAlignment.left
+//        label.layer.borderColor = UIColor.black.cgColor
+//        label.layer.borderWidth = 1
         
         addSubview(nameFood)
         addSubview(foodImageString)
@@ -56,11 +66,38 @@ extension ListCell {
         
         
         NSLayoutConstraint.activate([
-            foodImageString.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+          
             foodImageString.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            foodImageString.heightAnchor.constraint(equalToConstant: 78),
-            foodImageString.widthAnchor.constraint(equalToConstant: 78)
+            foodImageString.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            foodImageString.heightAnchor.constraint(equalToConstant: 132),
+            foodImageString.widthAnchor.constraint(equalToConstant: 132)
         ])
         
+        NSLayoutConstraint.activate([
+            nameFood.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            nameFood.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            nameFood.leadingAnchor.constraint(equalTo: foodImageString.trailingAnchor, constant: 32),
+         //   nameFood.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            nameFood.heightAnchor.constraint(equalToConstant: 29),
+            nameFood.widthAnchor.constraint(equalToConstant: 136)
+        ])
+        
+        NSLayoutConstraint.activate([
+            consist.topAnchor.constraint(equalTo: nameFood.bottomAnchor, constant: 8),
+            consist.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            consist.leadingAnchor.constraint(equalTo: foodImageString.trailingAnchor, constant: 32),
+         //   nameFood.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            consist.heightAnchor.constraint(equalToConstant: 64),
+            consist.widthAnchor.constraint(equalToConstant: 171)
+        ])
+        
+        NSLayoutConstraint.activate([
+            price.topAnchor.constraint(equalTo: consist.bottomAnchor, constant: 8),
+            price.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+          //  consist.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+         //   nameFood.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            price.heightAnchor.constraint(equalToConstant: 32),
+            price.widthAnchor.constraint(equalToConstant: 87)
+        ])
     }
 }
