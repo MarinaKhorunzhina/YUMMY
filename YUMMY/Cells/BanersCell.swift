@@ -16,7 +16,7 @@ class BanersCell: UICollectionViewCell, SelfConfiguringCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .red
+        backgroundColor = .white
         setupConstraints()
         
         self.layer.cornerRadius = 4

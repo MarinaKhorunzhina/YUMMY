@@ -19,10 +19,10 @@ class ListCell: UICollectionViewCell, SelfConfiguringCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .red
+        backgroundColor = .white
         setupConstraints()
         
-        self.layer.cornerRadius = 4
+        self.layer.cornerRadius = 20
         self.clipsToBounds = true
     }
     
@@ -32,6 +32,7 @@ class ListCell: UICollectionViewCell, SelfConfiguringCell {
         foodImageString.image = UIImage(named: list.foodImageString)
         consist.text = list.consist
         price.text = list.price
+        
     }
     
     required init?(coder: NSCoder) {
@@ -49,9 +50,11 @@ extension ListCell {
         nameFood.font = UIFont.boldSystemFont(ofSize: 17)
         consist.numberOfLines = 6
         price.layer.borderWidth = 1
-        price.layer.borderColor = UIColor.black.cgColor
+        price.layer.borderColor =  #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
         price.textAlignment = NSTextAlignment.center
         price.layer.cornerRadius = 6
+        price.textColor =  #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+        
         
 //        label.textColor = UIColor.blue
 //        label.font = UIFont.boldSystemFont(ofSize: 15)

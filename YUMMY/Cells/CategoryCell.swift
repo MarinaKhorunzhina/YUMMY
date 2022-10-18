@@ -16,12 +16,13 @@ class CategoryCell: UICollectionViewCell, SelfConfiguringCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemPink
+        backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
         setupConstraints()
         
         self.layer.cornerRadius = 16
         self.clipsToBounds = true
+       
     }
     
     func configure<U>(with value: U) where U : Hashable {
@@ -39,7 +40,12 @@ class CategoryCell: UICollectionViewCell, SelfConfiguringCell {
 extension CategoryCell {
     private func setupConstraints() {
         nameCategory.translatesAutoresizingMaskIntoConstraints = false
-        nameCategory.textColor = .white
+        nameCategory.textColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+        nameCategory.layer.borderColor =  #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+        nameCategory.layer.borderWidth = 1
+        nameCategory.layer.cornerRadius = 16
+        nameCategory.textAlignment = .center
+        
         nameCategory.font = UIFont(name: nameCategory.font.fontName, size: 17)
         
         addSubview(nameCategory)
