@@ -22,6 +22,7 @@
 		9C1B254228FB1A53008C19C7 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1B254128FB1A53008C19C7 /* ListCell.swift */; };
 		9C1B254528FB1FFA008C19C7 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1B254428FB1FFA008C19C7 /* MainTabBarController.swift */; };
 		9C1B254728FB3315008C19C7 /* NextVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1B254628FB3315008C19C7 /* NextVC.swift */; };
+		9C1B254B28FF1C04008C19C7 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1B254A28FF1C04008C19C7 /* Section.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		9C1B254128FB1A53008C19C7 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		9C1B254428FB1FFA008C19C7 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		9C1B254628FB3315008C19C7 /* NextVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextVC.swift; sourceTree = "<group>"; };
+		9C1B254A28FF1C04008C19C7 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				9C1B251E28F88C94008C19C7 /* Baners.swift */,
+				9C1B254A28FF1C04008C19C7 /* Section.swift */,
 				9C1B253828F89EA4008C19C7 /* Helpers */,
 				9C1B252B28F89365008C19C7 /* baners.json */,
 			);
@@ -196,6 +199,7 @@
 				9C1B254228FB1A53008C19C7 /* ListCell.swift in Sources */,
 				9C1B251F28F88C94008C19C7 /* Baners.swift in Sources */,
 				9C1B250D28F87465008C19C7 /* SceneDelegate.swift in Sources */,
+				9C1B254B28FF1C04008C19C7 /* Section.swift in Sources */,
 				9C1B253728F89C26008C19C7 /* Bundle-Decodable.swift in Sources */,
 				9C1B253A28F89F26008C19C7 /* BanersCell.swift in Sources */,
 				9C1B253C28F8A0C4008C19C7 /* SelfConfiguringCell.swift in Sources */,
