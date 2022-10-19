@@ -49,6 +49,7 @@ extension ListCell {
         price.translatesAutoresizingMaskIntoConstraints = false
         nameFood.font = UIFont.boldSystemFont(ofSize: 17)
         consist.numberOfLines = 6
+        consist.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         price.layer.borderWidth = 1
         price.layer.borderColor =  #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
         price.textAlignment = NSTextAlignment.center

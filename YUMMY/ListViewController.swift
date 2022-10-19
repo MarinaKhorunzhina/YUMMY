@@ -14,14 +14,31 @@ class ListViewController: UIViewController {
     var collectionView: UICollectionView!
     
     var dataSource: UICollectionViewDiffableDataSource<Section, Baners>?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-       
+        
+        
         setupCollectionView()
         createDataSource()
         reloadData()
+        
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        
+        let navigationBar = self.navigationController?.navigationBar
+        
+        navigationBar?.barStyle = UIBarStyle.default
+        
+        navigationBar?.tintColor = UIColor.black
+        
+        let image = UIImage(named: "icon")
+        
+        let nameCiti = UIBarButtonItem(image: image, style: .plain, target: self, action: nil)
+        
+        let titleCiti = UIBarButtonItem(title: "Москва", style: .done, target: self, action: nil)
+        navigationItem.leftBarButtonItems = [titleCiti, nameCiti]
     }
     
     func setupCollectionView() {
@@ -32,9 +49,12 @@ class ListViewController: UIViewController {
         
         collectionView.register(BanersCell.self, forCellWithReuseIdentifier: BanersCell.reuseId)
         collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.reuseId)
+        
         collectionView.register(ListCell.self, forCellWithReuseIdentifier: ListCell.reuseId)
         
+        
     }
+    
     
     // MARK: - Manage the data in UICV
     
@@ -48,6 +68,8 @@ class ListViewController: UIViewController {
             case "category":
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.reuseId, for: indexPath) as? CategoryCell
                 cell?.configure(with: chat)
+                
+                
                 return cell
             default:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCell.reuseId, for: indexPath) as? ListCell
@@ -79,7 +101,7 @@ class ListViewController: UIViewController {
                 return self.createBaners()
             case "category":
                 return self.createCategory()
-            
+                
             default:
                 return self.createList()
             }
@@ -89,55 +111,55 @@ class ListViewController: UIViewController {
     }
     
     private func createBaners() -> NSCollectionLayoutSection {
-   
-           let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                 heightDimension: .fractionalHeight(1))
-           let item = NSCollectionLayoutItem(layoutSize: itemSize)
-   
-           let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(300),
-                                                  heightDimension: .absolute(112))
-           let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-   
-           let section = NSCollectionLayoutSection(group: group)
-           section.interGroupSpacing = 20
-           section.contentInsets = NSDirectionalEdgeInsets.init(top: 16, leading: 16, bottom: 0, trailing: 16)
-           section.orthogonalScrollingBehavior = .continuous
-   
-   
-           return section
-       }
+        
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                              heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(300),
+                                               heightDimension: .absolute(112))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 20
+        section.contentInsets = NSDirectionalEdgeInsets.init(top: 16, leading: 16, bottom: 0, trailing: 16)
+        section.orthogonalScrollingBehavior = .continuous
+        
+        
+        return section
+    }
     
     private func createCategory() -> NSCollectionLayoutSection {
-           let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                 heightDimension: .fractionalHeight(1))
-           let item = NSCollectionLayoutItem(layoutSize: itemSize)
-   
-           let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(88),
-                                                  heightDimension: .absolute(32))
-           let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-   
-           let section = NSCollectionLayoutSection(group: group)
-           section.interGroupSpacing = 20
-           section.contentInsets = NSDirectionalEdgeInsets.init(top: 16, leading: 16, bottom: 0, trailing: 20)
-           section.orthogonalScrollingBehavior = .continuous
-   
-           return section
-       }
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                              heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(88),
+                                               heightDimension: .absolute(32))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 20
+        section.contentInsets = NSDirectionalEdgeInsets.init(top: 16, leading: 16, bottom: 0, trailing: 20)
+        section.orthogonalScrollingBehavior = .continuous
+        
+        return section
+    }
     private func createList() -> NSCollectionLayoutSection {
-           let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                 heightDimension: .fractionalHeight(1))
-           let item = NSCollectionLayoutItem(layoutSize: itemSize)
-   
-           let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                  heightDimension: .absolute(156))
-           let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-   
-           let section = NSCollectionLayoutSection(group: group)
-           section.interGroupSpacing = 1
-           section.contentInsets = NSDirectionalEdgeInsets.init(top: 16, leading: 0, bottom: 0, trailing: 0)
-   
-           return section
-       }
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                              heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                               heightDimension: .absolute(156))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 1
+        section.contentInsets = NSDirectionalEdgeInsets.init(top: 16, leading: 0, bottom: 0, trailing: 0)
+        
+        return section
+    }
     
     // section -> groups -> items -> size
 }

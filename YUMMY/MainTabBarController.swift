@@ -19,8 +19,9 @@ class MainTabBarController: UITabBarController {
         
         let menu = UIImage(named: "Меню")!
         let contact = UIImage(named: "Контакты")!
+        let purchase = UIImage(named: "Корзина")!
         
-        viewControllers = [generateNavigationController(rootViewController: listViewController, image: menu),generateNavigationController(rootViewController: nextVC, image: contact)]
+        viewControllers = [generateNavigationController(rootViewController: listViewController, image: menu),generateNavigationController(rootViewController: nextVC, image: contact),generateNavigationController(rootViewController: nextVC, image: purchase)]
         
     }
     
@@ -29,4 +30,8 @@ class MainTabBarController: UITabBarController {
         navigationVC.tabBarItem.image = image
         return navigationVC
     }
+
+    
+    
 }
+
